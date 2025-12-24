@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
 
     res.json({
       success: true,
-      data: folders,
+      folders: folders,
       count: folders.length
     });
   } catch (error) {

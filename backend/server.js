@@ -43,12 +43,18 @@ app.use(cors({
     // Allow requests with no origin (like mobile apps, Postman, or proxied requests)
     if (!origin) return callback(null, true);
     
+    // Allow localhost origins
     if (allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      console.log('Blocked origin:', origin);
-      callback(new Error('Not allowed by CORS'));
+      return callback(null, true);
     }
+    
+    // Allow GitHub Codespaces origins
+    if (origin && (origin.includes('github.dev') || origin.includes('app.github.dev') || origin.includes('preview.app.github.dev'))) {
+      return callback(null, true);
+    }
+    
+    console.log('Blocked origin:', origin);
+    callback(new Error('Not allowed by CORS'));
   },
   credentials: true
 }));

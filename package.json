@@ -4,6 +4,7 @@
   "description": "Premium File Manager with Light/Dark Mode",
   "private": true,
   "scripts": {
+    "start": "bash START.sh",
     "dev": "bash kill-ports.sh && concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
     "dev:frontend": "vite",
     "dev:backend": "cd backend && npm run dev",
